@@ -1,0 +1,111 @@
+/* Google Fonts 字體*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    box-sizing: border-box;
+}
+::selection{
+    color: var(--bg-color);
+    background: var(--second-color);
+}
+
+/* Variables 變數 */
+:root{
+    --container-color:#1a1e21;
+    --second-color:#fd8f44;
+    --text-color:#172317;
+    --bg-color:#fff;
+}
+
+/* Body */
+body{
+    background: var(--container-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+*{
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+form{
+    width: 500px;
+    border: 2px solid #ccc;
+    padding: 70px;
+    background: var(--second-color);
+    border-radius: 15px;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+h3{
+    text-align: center;
+    margin-bottom: 10px;
+}
+h4{
+    text-align: center;
+    font-size: 0.1rem;
+    margin-bottom: 10px; 
+}
+input.top{
+    display: block;
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 10px ;
+    border-radius: 5px;
+    width: 95%;
+}
+label{
+    color:var(--container-color);
+    font-size: 18px;
+    padding: 10px;
+}
+button{
+    float: right;
+    background: var(--container-color);
+    padding: 10px 15px;
+    color: var(--bg-color);
+    border-radius: 5px;
+    margin-right: 10px;
+    border: none;
+}
+button:hover{
+    opacity: .7;
+}
+.error{
+    background: #F2DEDE;
+    color: #A94442;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+ 
+h1{
+     text-align: center;
+     color: #fff;
+}
+ a{
+    text-decoration: none;
+    color: var(--bg-color);
+ }
+/* a{
+     float: right;
+     background: #555;
+     padding: 10px 15px;
+     color: #fff;
+     border-radius: 5px;
+     margin-right: 10px;
+     border: none;
+     text-decoration: none;
+}
+a:hover{
+     opacity: .7;
+} */
