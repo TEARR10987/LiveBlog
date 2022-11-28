@@ -44,13 +44,15 @@
         <!-- Post Box 1 -->
         <?php
         
-        for ($i = 0; $i < 9; $i++) {
+        $temp = Query_All_Post_Titles();
+
+        foreach ($temp as $row) {
             echo "<div class='post-box live'>";
             echo "<img src='img/post-1.jpg' alt='' class='post-img'>";
-            echo "<h2 class='category'>{$i}</h2>";
-            echo "<a href='post-page.php' class='post-title'>{$i}</a>";
-            echo "<span class='post-date'>{$i}</span><span class='post-date'>{$time}</span>";
-            echo "<p class='post-decription'>{$i}</p>";
+            echo "<h2 class='category'>{$row['id']}</h2>";
+            echo "<a href='post-page.php' class='post-title'>{$row['user_id']}</a>";
+            echo "<span class='post-date'>{$row['title']}</span><span class='post-date'>{$row['datetime']}</span>";
+            echo "<p class='post-decription'>{$row['name']}</p>";
             echo "<div class='profile'>";
             echo "<img src='img/profile-1.jpg' alt='' class='profile-img'>";
             echo "<span class='profile-name'>{$i}</span>";
