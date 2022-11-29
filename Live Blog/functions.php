@@ -284,6 +284,7 @@ function Query_All_Post_Titles()
                         "id" => $row["id"],
                         "user_id" => $row["user_id"],
                         "title" => $row["title"],
+                        "image" => $row["image"],
                         "datetime" => $row["datetime"],
                         "name" => $row["name"]
                     );
