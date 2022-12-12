@@ -1,12 +1,3 @@
-<?php
-//檢查有沒有名稱是"LoginOK"的Cookie，也檢查值是不是OK，沒有就直接把使用者帶到登入首頁
-if (!isset($_COOKIE["LoginOK"]) || $_COOKIE["LoginOK"] !== "OK") {
-    echo "<h1>這是一個秘密網頁，你不是會員，不能進來</h1>";
-    echo "<a href='index.php'>回到登入首頁！</a>";
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +8,10 @@ if (!isset($_COOKIE["LoginOK"]) || $_COOKIE["LoginOK"] !== "OK") {
     <!-- Link To CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Box Icons-->
-    <link  rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
 </head>
+
 <body>
-    <h2>登入成功</h2>
     <!-- Header -->
     <header>
         <!-- Nav -->
@@ -29,7 +20,9 @@ if (!isset($_COOKIE["LoginOK"]) || $_COOKIE["LoginOK"] !== "OK") {
             <a href="#" class="logo">Live<span>Blog</span> </a>
             <!-- Login Btn -->
             <a href="login.php" class="login">登入</a>
+
         </div>
+        
     </header>
     <!-- Home -->
     <section class="home" id="home">
@@ -39,62 +32,69 @@ if (!isset($_COOKIE["LoginOK"]) || $_COOKIE["LoginOK"] !== "OK") {
         </div>
     </section>
 
+    
     <!-- Post Filter -->
     <div class="post-filter container">
         <span class="filter-item active-filter" data-filter='all'>全部</span>
         <span class="filter-item " data-filter='live'>即時</span>
         <span class="filter-item " data-filter='hot'>熱門</span>
         <span class="filter-item " data-filter='life'>生活</span>
+    <a class="login newpost" href="add_new_post.php" class="login">新增文章</a>
     </div>
+   
     <!-- Posts -->
     <section class="post container">
-        
         <!-- Post Box 1 -->
-        <div class="post-box live">
-            <img src="img/post-1.jpg" alt="" class="post-img">
-            <h2 class="category">即時</h2>
+        <?php
+        require_once("functions.php"); //資料庫連線
+
+        $temp = Query_All_Post_Titles();
+        foreach ($temp as $row) {
+            echo "<div class='post-box' '{$row['Classification']}' >";
+            echo "<img src='img/{$row['image']}' alt='' class='post-img'>";
+            echo "<h2 class='category'>{$row['Classification']}</h2>";
+            echo "<a href='post_detail.php' class='post-title'>{$row['title']}</a>";
+            echo "<span class='post-date'>{$row['datetime']}</span>";
+            echo "<p class='post_detail.php'>{$row['title']}</p>";
+            echo "<div class='profile'>";
+            echo "<span class='profile-name'>{$row['name']}</span>";
+            echo "</div>";
+            echo "</div>";
+        }
+        ?>
+        <!-- Post Box 2 -->
+        <!-- <div class="post-box hot">
+            <img src="img/post-2.jpg" alt="" class="post-img">
+            <h2 class="category">熱門</h2>
             <a href="post-page.php" class="post-title">
-            台中神岡桶屍案 40多歲男性屍體背部有刺青
+                我們老大剛被架走了！習近平召告天下「團派」滅 二十大派系赤裸裸公開狠鬥
             </a>
             <span class="post-date">12 Feb 2022</span>
-            <p class="post-decription">（中央社記者趙麗妍台中27日電）台中市神岡區一處工廠發生桶屍案，檢警今天相驗，屍體為年約40多歲的男性，身高約160至170公分，因屍體蠟化增加辨識難度，背部有刺青但圖案無法辨識，身分確認須待DNA結果。</p>
-            <!-- Profile -->
-            <div class="profile">
-                <img src="img/profile-1.jpg" alt="" class="profile-img">
-                <span class="profile-name">周渝民</span>
-            </div>
-        </div>
+            <p class="post-decription">
+                前中國國家主席胡錦濤日前出席中國二十大，在閉幕式過程中卻「被離場」，引發外界熱烈關注。有分析人士指出，此舉意味著習近平消除胡錦濤所在的「團派」勢力大獲成功。
+            </p>
         
+            <div class="profile">
+                <img src="img/profile-2.jpg" alt="" class="profile-img">
+                <span class="profile-name">張榕容</span>
+            </div>
+        </div> -->
     </section>
     <!-- Footer -->
     <div class="footer container">
         <p>&#169; Life Blog Test</p>
         <div class="social">
-            <a href="#"><i class='bx bxl-facebook' ></i></a>
-            <a href="#"><i class='bx bxl-instagram' ></i></a>
-            <a href="#"><i class='bx bxl-linkedin' ></i></a>
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
         </div>
     </div>
-    <?php
-        $temp = Query_All_Post_Titles(); // 取得資料庫中所有發文的清單資料
 
-        foreach ($temp as $row) { // 將所有發文的清單資料，依序讀取，然後製作成HTML表格
-            echo "<tr>";
-            echo "<td>{$row['id']}</td>";
-            echo "<td><a href = 'post_detail.php?post_id={$row['id']}'>{$row['title']}</a></td>";
-            echo "<td>{$row['name']}</td>";
-            echo "<td>{$row['datetime']}</td>";
-            echo "</tr>";
-        }
-
-        ?>
     <!-- JQuery Link -->
-    <script
-        src="https://code.jquery.com/jquery-3.6.1.js"
-        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous">
     </script>
     <!-- Link To JS -->
     <script src="js/main.js"></script>
 </body>
+
 </html>

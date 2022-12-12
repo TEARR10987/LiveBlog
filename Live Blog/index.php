@@ -21,7 +21,6 @@
             <!-- Login Btn -->
             <a href="login.php" class="login">登入</a>
 
-            
         </div>
         
     </header>
@@ -33,15 +32,14 @@
         </div>
     </section>
 
+    
     <!-- Post Filter -->
     <div class="post-filter container">
         <span class="filter-item active-filter" data-filter='all'>全部</span>
         <span class="filter-item " data-filter='live'>即時</span>
         <span class="filter-item " data-filter='hot'>熱門</span>
         <span class="filter-item " data-filter='life'>生活</span>
-        <!-- 新增文章 -->
-        <a class="login newpost" href="add_new_post.php" class="login">新增文章</a>
-</div>
+    </div>
    
     <!-- Posts -->
     <section class="post container">
@@ -50,20 +48,17 @@
         require_once("functions.php"); //資料庫連線
 
         $temp = Query_All_Post_Titles();
-        
         foreach ($temp as $row) {
-            echo "<div class='post-box live'>";
+            echo "<div class='post-box' '{$row['Classification']}' >";
             echo "<img src='img/{$row['image']}' alt='' class='post-img'>";
-            echo "<h2 class='category'>{$row['id']}</h2>";
-            echo "<a href='post-page.php' class='post-title'>{$row['user_id']}</a>";
-            echo "<span class='post-date'>{$row['title']}</span><span class='post-date'>{$row['datetime']}</span>";
-            echo "<p class='post-decription'>{$row['name']}</p>";
+            echo "<h2 class='category'>{$row['Classification']}</h2>";
+            echo "<a href='post_detail.php?post_id={$row['id']}' class='post-title'>{$row['title']}</a>";
+            echo "<span class='post-date'>{$row['datetime']}</span>";
+            echo "<p class='post-decription'>{$row['title']}</p>";
             echo "<div class='profile'>";
-            echo "<img src='img/profile-1.jpg' alt='' class='profile-img'>";
-            echo "<span class='profile-name'>{$i}</span>";
+            echo "<span class='profile-name'>{$row['name']}</span>";
             echo "</div>";
             echo "</div>";
-
         }
         ?>
         <!-- Post Box 2 -->

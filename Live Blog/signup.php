@@ -31,19 +31,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
     <title>Sign Up</title>
+    <script>
+        function refresh_code() {
+            document.getElementById("imgcode").src = "captcha.php";
+        }
+        
+    </script>
 </head>
 <body>
     <div class="signup-box">
     <form name="index.php" method="post" action="signup.php">
         <h2>註 冊</h2>
-        <label  >帳號</label>
+        <h5><label >帳號</label></h5>
         <input class="top" type="text" name="Account" size="15" value="" /><br />
-        <label >密碼</label>
+        <h5><label >密碼</label></h5>
         <input class="top" type="text" name="Password" size="15" value="" /><br />
-        <label >名字</label>
+        <h5><label >名字</label></h5>
         <input class="top" type="text" name="Name" size="15" value="" /><br />
-        <label >管理員</label>
-        <input type="checkbox" name="Admin" value="Y" checked/><br />
+        <h6><label>驗證碼</label></h6>
+        <br>
+        <label class="top"><img id="imgcode" src="captcha.php" onclick="refresh_code()"/></label> 
+        <br>
+        <h6><label class="top" >點擊圖片可以更換驗證碼</label></h6> 
+        <input class="top" type="text" name="Checkword" size="20" maxlength="10" />
         <input class="top" type="submit" value="新增會員" />
     </form>
     </div>

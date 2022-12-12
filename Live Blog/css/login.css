@@ -109,3 +109,14 @@ h1{
 a:hover{
      opacity: .7;
 } */
+.back{
+    padding: 10px;
+    border: 0px;
+    background: var(--container-color);
+    color: var(--bg-color);
+    float: right;
+    background: var(--container-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    border: none;
+}
